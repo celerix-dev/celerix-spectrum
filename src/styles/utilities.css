@@ -1,0 +1,66 @@
+@layer utilities {
+    .v-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+    .p-0 { padding: 0 !important; }
+    .m-auto { margin: auto !important; }
+
+    .s-primary {
+        background-color: var(--bg-base);
+        color: var(--on-bg-base);
+        --text-muted: color-mix(in srgb, var(--on-bg-base), transparent 40%);
+    }
+
+    /* Surface Secondary (Cards, Sidebars, Modals) */
+    .s-secondary {
+        background-color: var(--bg-surface);
+        color: var(--on-bg-surface);
+        --text-muted: color-mix(in srgb, var(--on-bg-surface), transparent 40%);
+    }
+
+    /* Surface Accent (The Brand Color) */
+    .s-accent {
+        background-color: var(--brand);
+        color: var(--on-brand);
+        /* In accent areas, muted text is just lower opacity white/black */
+        --text-muted: color-mix(in srgb, var(--on-brand), transparent 30%);
+    }
+
+    /* ================================================================
+        THE UNIVERSAL SPACING SUITE (0-10)
+        - Uses Logical Properties (Start/End/Block/Inline)
+        - Points to tokens --s-0 through --s-10
+    ================================================================ */
+
+    /* --- PADDING: ALL SIDES --- */
+    .p-0 { padding: var(--s-0); } .p-1 { padding: var(--s-1); } .p-2 { padding: var(--s-2); } .p-3 { padding: var(--s-3); } .p-4 { padding: var(--s-4); } .p-5 { padding: var(--s-5); } .p-6 { padding: var(--s-6); } .p-7 { padding: var(--s-7); } .p-8 { padding: var(--s-8); } .p-9 { padding: var(--s-9); } .p-10 { padding: var(--s-10); }
+
+    /* --- PADDING: AXES (X/Y) --- */
+    .px-0 { padding-inline: var(--s-0); } .px-1 { padding-inline: var(--s-1); } .px-2 { padding-inline: var(--s-2); } .px-3 { padding-inline: var(--s-3); } .px-4 { padding-inline: var(--s-4); } .px-5 { padding-inline: var(--s-5); } .px-6 { padding-inline: var(--s-6); } .px-7 { padding-inline: var(--s-7); } .px-8 { padding-inline: var(--s-8); } .px-9 { padding-inline: var(--s-9); } .px-10 { padding-inline: var(--s-10); }
+
+    .py-0 { padding-block: var(--s-0); } .py-1 { padding-block: var(--s-1); } .py-2 { padding-block: var(--s-2); } .py-3 { padding-block: var(--s-3); } .py-4 { padding-block: var(--s-4); } .py-5 { padding-block: var(--s-5); } .py-6 { padding-block: var(--s-6); } .py-7 { padding-block: var(--s-7); } .py-8 { padding-block: var(--s-8); } .py-9 { padding-block: var(--s-9); } .py-10 { padding-block: var(--s-10); }
+
+    /* --- PADDING: DIRECTIONAL --- */
+    .pt-0 { padding-block-start: var(--s-0); } .pt-1 { padding-block-start: var(--s-1); } .pt-2 { padding-block-start: var(--s-2); } .pt-3 { padding-block-start: var(--s-3); } .pt-4 { padding-block-start: var(--s-4); } .pt-5 { padding-block-start: var(--s-5); }
+    .pb-0 { padding-block-end: var(--s-0); } .pb-1 { padding-block-end: var(--s-1); } .pb-2 { padding-block-end: var(--s-2); } .pb-3 { padding-block-end: var(--s-3); } .pb-4 { padding-block-end: var(--s-4); } .pb-5 { padding-block-end: var(--s-5); }
+    .ps-0 { padding-inline-start: var(--s-0); } .ps-1 { padding-inline-start: var(--s-1); } .ps-2 { padding-inline-start: var(--s-2); } .ps-3 { padding-inline-start: var(--s-3); } .ps-4 { padding-inline-start: var(--s-4); } .ps-5 { padding-inline-start: var(--s-5); }
+    .pe-0 { padding-inline-end: var(--s-0); } .pe-1 { padding-inline-end: var(--s-1); } .pe-2 { padding-inline-end: var(--s-2); } .pe-3 { padding-inline-end: var(--s-3); } .pe-4 { padding-inline-end: var(--s-4); } .pe-5 { padding-inline-end: var(--s-5); }
+
+    /* --- MARGIN: ALL SIDES --- */
+    .m-0 { margin: var(--s-0); } .m-1 { margin: var(--s-1); } .m-2 { margin: var(--s-2); } .m-3 { margin: var(--s-3); } .m-4 { margin: var(--s-4); } .m-5 { margin: var(--s-5); } .m-6 { margin: var(--s-6); } .m-7 { margin: var(--s-7); } .m-8 { margin: var(--s-8); } .m-9 { margin: var(--s-9); } .m-10 { margin: var(--s-10); }
+
+    /* --- MARGIN: AXES (X/Y) --- */
+    .mx-0 { margin-inline: var(--s-0); } .mx-1 { margin-inline: var(--s-1); } .mx-2 { margin-inline: var(--s-2); } .mx-3 { margin-inline: var(--s-3); } .mx-4 { margin-inline: var(--s-4); } .mx-5 { margin-inline: var(--s-5); } .mx-auto { margin-inline: auto; }
+    .my-0 { margin-block: var(--s-0); } .my-1 { margin-block: var(--s-1); } .my-2 { margin-block: var(--s-2); } .my-3 { margin-block: var(--s-3); } .my-4 { margin-block: var(--s-4); } .my-5 { margin-block: var(--s-5); } .my-auto { margin-block: auto; }
+
+    /* --- MARGIN: DIRECTIONAL & AUTO --- */
+    .mt-0 { margin-block-start: var(--s-0); } .mt-1 { margin-block-start: var(--s-1); } .mt-2 { margin-block-start: var(--s-2); } .mt-3 { margin-block-start: var(--s-3); } .mt-4 { margin-block-start: var(--s-4); } .mt-5 { margin-block-start: var(--s-5); } .mt-auto { margin-block-start: auto; }
+    .mb-0 { margin-block-end: var(--s-0); } .mb-1 { margin-block-end: var(--s-1); } .mb-2 { margin-block-end: var(--s-2); } .mb-3 { margin-block-end: var(--s-3); } .mb-4 { margin-block-end: var(--s-4); } .mb-5 { margin-block-end: var(--s-5); } .mb-auto { margin-block-end: auto; }
+    .ms-0 { margin-inline-start: var(--s-0); } .ms-1 { margin-inline-start: var(--s-1); } .ms-2 { margin-inline-start: var(--s-2); } .ms-3 { margin-inline-start: var(--s-3); } .ms-4 { margin-inline-start: var(--s-4); } .ms-5 { margin-inline-start: var(--s-5); } .ms-auto { margin-inline-start: auto; }
+    .me-0 { margin-inline-end: var(--s-0); } .me-1 { margin-inline-end: var(--s-1); } .me-2 { margin-inline-end: var(--s-2); } .me-3 { margin-inline-end: var(--s-3); } .me-4 { margin-inline-end: var(--s-4); } .me-5 { margin-inline-end: var(--s-5); } .me-auto { margin-inline-end: auto; }
+
+    /* --- GAP: GLOBAL, COLUMN, ROW --- */
+    .g-0 { gap: var(--s-0); } .g-1 { gap: var(--s-1); } .g-2 { gap: var(--s-2); } .g-3 { gap: var(--s-3); } .g-4 { gap: var(--s-4); } .g-5 { gap: var(--s-5); } .g-6 { gap: var(--s-6); } .g-7 { gap: var(--s-7); } .g-8 { gap: var(--s-8); } .g-9 { gap: var(--s-9); } .g-10 { gap: var(--s-10); }
+
+    .gc-0 { column-gap: var(--s-0); } .gc-1 { column-gap: var(--s-1); } .gc-2 { column-gap: var(--s-2); } .gc-3 { column-gap: var(--s-3); } .gc-4 { column-gap: var(--s-4); } .gc-5 { column-gap: var(--s-5); }
+    .gr-0 { row-gap: var(--s-0); } .gr-1 { row-gap: var(--s-1); } .gr-2 { row-gap: var(--s-2); } .gr-3 { row-gap: var(--s-3); } .gr-4 { row-gap: var(--s-4); } .gr-5 { row-gap: var(--s-5); }
+
+}

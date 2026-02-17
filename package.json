@@ -1,0 +1,32 @@
+{
+  "name": "celerix-spectrum",
+  "version": "0.0.1",
+  "description": "Framework-agnostic primitives for color and layout.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./vue": {
+      "import": "./dist/vue/index.js",
+      "types": "./dist/vue/index.d.ts"
+    },
+    "./styles": "./dist/styles/index.css"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc && node ./scripts/build-css.js",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vue": "~3.5.28"
+  }
+}

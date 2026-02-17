@@ -1,0 +1,111 @@
+@layer tokens {
+    :root {
+        /* USER PREFERENCES */
+        --cx-hue-light: 290;
+        --cx-chroma-light: 0.18;
+        --cx-hue-dark: 20;
+        --cx-chroma-dark: 0.15;
+
+        /* SHARED TOKENS */
+        --s-0: 0rem;
+        --s-1: 0.25rem;
+        --s-2: 0.5rem;
+        --s-3: 1rem;
+        --s-4: 1.5rem;
+        --s-5: 3rem;
+        --s-6: 4.5rem;
+        --s-7: 5.25rem;
+        --s-8: 6rem;
+        --s-9: 7.5rem;
+        --s-10: 9rem;
+
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --text-muted-opacity: 0.6;
+
+        /* Interactive Separators - uses currentColor to adapt to text automatically */
+        --separator: color-mix(in srgb, currentColor, transparent 85%);
+        --separator-strong: color-mix(in srgb, currentColor, transparent 70%);
+    }
+
+    /* --------------------------------------------------------
+       BASE THEME (Light Mode)
+       Defined on :root so it's the default fallback.
+       -------------------------------------------------------- */
+    :root,
+    [data-theme="light"] {
+        color-scheme: light;
+        --brand-hue: var(--cx-hue-light);
+        --brand-chroma: var(--cx-chroma-light);
+
+        --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+
+        --bg-base:      oklch(from var(--brand-seed) 0.99 calc(c * 0.05) h);
+        --on-bg-base:   oklch(from var(--brand-seed) 0.15 calc(c * 0.10) h);
+        --bg-surface:   oklch(from var(--brand-seed) 0.95 calc(c * 0.10) h);
+        --on-bg-surface:oklch(from var(--brand-seed) 0.15 calc(c * 0.10) h);
+
+        --brand:        var(--brand-seed);
+        --on-brand:     oklch(from var(--brand-seed) 0.99 0.01 h);
+        --bg-glass:     oklch(from var(--brand-seed) 0.99 0.01 h / 0.25);
+    }
+
+    /* --------------------------------------------------------
+       DARK THEME (Dark Mode)
+       -------------------------------------------------------- */
+
+    /* We define a reusable set of properties to avoid duplication */
+    /* This block handles the actual token values for Dark Mode */
+%dark-theme-tokens {
+    color-scheme: dark;
+    --brand-hue: var(--cx-hue-dark);
+    --brand-chroma: var(--cx-chroma-dark);
+
+    --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+
+    --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
+    --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+    --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
+    --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+
+    --brand:        oklch(from var(--brand-seed) 0.75 c h);
+    --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
+    --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
+}
+
+    /* --------------------------------------------------------
+       TRIGGERING THE DARK THEME
+       -------------------------------------------------------- */
+
+    /* Trigger 1: Explicitly set to [data-theme="dark"] */
+    [data-theme="dark"] {
+        @apply %dark-theme-tokens; /* If using a preprocessor, otherwise copy-paste the block below */
+        color-scheme: dark;
+        --brand-hue: var(--cx-hue-dark);
+        --brand-chroma: var(--cx-chroma-dark);
+        --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+        --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
+        --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+        --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
+        --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+        --brand:        oklch(from var(--brand-seed) 0.75 c h);
+        --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
+        --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
+    }
+
+    /* System is Dark AND User hasn't forced Light */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            color-scheme: dark;
+            --brand-hue: var(--cx-hue-dark);
+            --brand-chroma: var(--cx-chroma-dark);
+            --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+            --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
+            --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+            --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
+            --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
+            --brand:        oklch(from var(--brand-seed) 0.75 c h);
+            --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
+            --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
+        }
+    }
+}

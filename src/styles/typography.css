@@ -1,0 +1,30 @@
+@layer base {
+    /* Global Defaults - Apply to tags directly so we don't need classes */
+    h1, h2, h3, h4 {
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--on-bg-base, #000);
+        margin-bottom: var(--s-2);
+    }
+
+    span, p, li {
+        color: var(--on-bg-base, #333);
+        font-size: var(--font-size, 1rem);
+    }
+
+    small { font-size: 0.8rem; }
+}
+
+@layer utilities {
+    /* Helper classes for the "Brevity" */
+    .text-bold { font-weight: 700; }
+    .text-semibold { font-weight: 600; }
+
+    .text-uppercase { text-transform: uppercase; letter-spacing: 0.05em; }
+    .text-muted { color: var(--text-muted, #666); }
+    .text-center { text-align: center; }
+
+    /* Fluid font sizes */
+    .text-lg { font-size: 1.25rem; }
+    .text-xl { font-size: 1.5rem; }
+}

@@ -1,0 +1,119 @@
+@layer primitives {
+    /* Stack: Vertical rhythm */
+    .stack {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* Uses --gap if provided, otherwise defaults to token --s-3 */
+        gap: var(--gap, var(--s-3));
+    }
+
+    /* Cluster: Horizontal wrap (Buttons, Tags, Tabs) */
+    .cluster {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: var(--justify, flex-start);
+        gap: var(--gap, var(--s-3));
+    }
+
+    /* Grid: The "Auto-Layout" (Cards, Gallery) */
+    .grid {
+        display: grid;
+        gap: var(--gap, var(--s-3));
+        /* The magic: it stays 1 col until there is room for the --min width */
+        grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min, 250px), 100%), 1fr)
+    );
+    }
+
+    /* Switcher: Threshold-based layout */
+    .switcher {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gap, var(--s-3));
+    }
+
+    .switcher > * {
+        flex-grow: 1;
+        /* If the container is narrower than --threshold, elements stack 100% */
+        flex-basis: calc((var(--threshold, 40rem) - 100%) * 999);
+    }
+
+    /* Sticky Header */
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 100; /* Keeps it above the scrolling content */
+
+        /* The "Glass" Effect */
+        background-color: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px); /* For Safari support */
+
+        /* A subtle bottom border using our calculated separator */
+        border-bottom: 1px solid var(--separator);
+
+        /* Use our cluster primitive to align items inside */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: var(--s-3);
+        min-height: var(--header-height, 4rem);
+    }
+
+    /* Admin dashboard layout */
+    .dashboard-layout {
+        display: grid;
+        height: 100dvh;
+        /* Define the columns: sidebar width (default 250px) and the rest is auto */
+        grid-template-columns: var(--sidebar-width, 300px) 1fr;
+        /* Define the rows: Header auto-height, Main expands */
+        grid-template-rows: auto 1fr;
+        transition: grid-template-columns 0.3s var(--ease);
+
+        /* The Map: */
+        grid-template-areas:
+      "sidebar header"
+      "sidebar main"
+    }
+
+    /* Assigning the children to the map */
+    .dashboard-layout > header  { grid-area: header; }
+    .dashboard-layout > aside   { grid-area: sidebar; }
+    .dashboard-layout > main    { grid-area: main; }
+
+    /* Responsive: On small screens, stack everything */
+    @media (max-width: 768px) {
+        :root {
+            --sidebar-width: 40px !important;
+        }
+        .dashboard-layout {
+            grid-template-columns: 60px 1fr;
+            grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        }
+
+        .dashboard-layout > aside {
+            display: var(--sidebar-mobile, block);
+        }
+    }
+
+    .cover {
+        display: flex;
+        flex-direction: column;
+        min-height: var(--min-height, 100vh);
+        padding: var(--gap, var(--s-3));
+    }
+
+    .cover > * {
+        margin-block: var(--s-2);
+    }
+
+    /* The "Centered" element in the cover */
+    .cover > .centered {
+        margin-block: auto;
+    }
+}
