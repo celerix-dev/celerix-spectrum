@@ -6,6 +6,8 @@
 @import "./typography.css" layer(typography);
 @import "./utilities.css" layer(utilities);
 
+@import "./components/index.css";
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height, 4rem);
@@ -14,6 +16,9 @@ html {
 body {
     background: var(--bg-base);
     color: var(--on-bg-base);
+    font-family: var(--cx-font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .surface {
@@ -26,8 +31,57 @@ body {
     color: var(--on-brand);
 }
 
-.button {
-    padding: var(--s-1);
-    border-radius: var(--s-1);
-    border:1px solid var(--separator)
+.success {
+    background: var(--success);
+    color: var(--on-success);
+}
+.warning {
+    background: var(--warning);
+    color: var(--on-warning);
+}
+
+.danger {
+    background: var(--danger);
+    color: var(--on-danger);
+}
+
+.brand-100 { background-color: var(--brand-100);}
+.brand-200 { background-color: var(--brand-200);}
+.brand-300 { background-color: var(--brand-300);}
+.brand-400 { background-color: var(--brand-400);}
+.brand-500 { background-color: var(--brand-500);}
+.brand-600 { background-color: var(--brand-600);}
+.brand-700 { background-color: var(--brand-700);}
+.brand-800 { background-color: var(--brand-800);}
+.brand-900 { background-color: var(--brand-900);}
+
+.text-mono {
+    font-family: var(--cx-font-mono), monospace;
+    font-size: 13px;
+}
+
+a, a:visited, a:active {
+    color: var(--on-bg-surface);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--brand-700);
+    }
+}
+
+.professional-card {
+    --border-width: 3px;
+    padding:10px;
+    position: relative;
+    border: var(--border-width) solid transparent;
+    border-radius: 8px;
+    background:
+            linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box, /* Inner color */
+            linear-gradient(135deg, var(--brand-600) 0%, var(--brand-400) 100%) border-box; /* Border gradient */
+}
+
+/** DO NOT REMOVE OR CHANGE THIS CLASS; This is used in engine.ts to calculate contrast ratios **/
+.brand-500-wcag-inspect {
+    background-color: var(--brand);
+    color: var(--on-brand);
 }

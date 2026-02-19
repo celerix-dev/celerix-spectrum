@@ -1,111 +1,196 @@
 @layer tokens {
     :root {
-        /* USER PREFERENCES */
+        /* USER PREFERENCES - Synced by SpectrumEngine */
         --cx-hue-light: 290;
         --cx-chroma-light: 0.18;
+        --cx-lightness-light: 0.6;
+
         --cx-hue-dark: 20;
         --cx-chroma-dark: 0.15;
+        --cx-lightness-dark: 0.14;
 
         /* SHARED TOKENS */
-        --s-0: 0rem;
-        --s-1: 0.25rem;
-        --s-2: 0.5rem;
-        --s-3: 1rem;
-        --s-4: 1.5rem;
-        --s-5: 3rem;
-        --s-6: 4.5rem;
-        --s-7: 5.25rem;
-        --s-8: 6rem;
-        --s-9: 7.5rem;
-        --s-10: 9rem;
+        --s-0: 0rem; --s-0-5: 0.125rem; --s-1: 0.25rem; --s-2: 0.5rem; --s-2-5: 0.75rem;
+        --s-3: 1rem; --s-3-5: 1.25rem; --s-4: 1.5rem; --s-5: 3rem; --s-6: 4.5rem;
+        --s-7: 6rem; --s-8: 7.5rem; --s-9: 9rem; --s-10: 12rem;
+
+        --hue-success: 142; --hue-warning: 48; --hue-danger: 25; --hue-info: 255;
 
         --ease: cubic-bezier(0.4, 0, 0.2, 1);
         --text-muted-opacity: 0.6;
 
-        /* Interactive Separators - uses currentColor to adapt to text automatically */
         --separator: color-mix(in srgb, currentColor, transparent 85%);
         --separator-strong: color-mix(in srgb, currentColor, transparent 70%);
+
+        --cx-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --cx-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     /* --------------------------------------------------------
-       BASE THEME (Light Mode)
-       Defined on :root so it's the default fallback.
+       1. DEFAULT THEME (Light Mode)
        -------------------------------------------------------- */
-    :root,
+    :root {
+        color-scheme: light;
+        --brand-hue: var(--cx-hue-light);
+        --brand-chroma: var(--cx-chroma-light);
+        --brand-lightness: var(--cx-lightness-light);
+
+        --brand-seed: oklch(var(--brand-lightness) var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+
+        --bg-base:      oklch(from var(--brand-seed) calc(l + (1 - l) * 0.95) calc(c * 0.05) h);
+        --on-bg-base:   oklch(from var(--brand-seed) 0.15 calc(c * 0.10) h);
+        --bg-surface:   oklch(from var(--brand-seed) calc(l + (1 - l) * 0.85) calc(c * 0.10) h);
+        --on-bg-surface:oklch(from var(--brand-seed) 0.20 calc(c * 0.10) h);
+
+        --brand:        var(--brand-seed);
+        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+        --brand-hover:  oklch(from var(--brand-seed) calc(l - 0.08) c h);
+        --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
+        --bg-muted:     oklch(from var(--brand-seed) calc(l + (1 - l) * 0.7) 0.02 h);
+        --on-bg-muted:  oklch(from var(--brand-seed) 0.45 0.02 h);
+
+        --brand-100: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.80) calc(c * 0.3) h);
+        --brand-200: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.60) calc(c * 0.5) h);
+        --brand-300: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.40) calc(c * 0.7) h);
+        --brand-400: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.20) calc(c * 0.9) h);
+        --brand-500: var(--brand-seed);
+        --brand-600: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.10) c h);
+        --brand-700: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.20) c h);
+        --brand-800: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.30) c h);
+        --brand-900: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.40) c h);
+
+        --success: oklch(0.60 0.15 var(--hue-success));
+        --on-success: oklch(0.99 0.01 var(--hue-success));
+        --warning: oklch(0.80 0.12 var(--hue-warning));
+        --on-warning: oklch(0.20 0.02 var(--hue-warning));
+        --danger:  oklch(0.55 0.20 var(--hue-danger));
+        --on-danger: oklch(0.99 0.01 var(--hue-danger));
+        --info:    oklch(0.60 0.15 var(--hue-info));
+        --on-info: oklch(0.99 0.01 var(--hue-info));
+    }
+
+    /* --------------------------------------------------------
+       2. AUTO-SWITCHING (Media Query)
+       -------------------------------------------------------- */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color-scheme: dark;
+            --brand-hue: var(--cx-hue-dark);
+            --brand-chroma: var(--cx-chroma-dark);
+            --brand-lightness: var(--cx-lightness-dark);
+
+            --brand-seed: oklch(var(--brand-lightness) var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+
+            --bg-base:      oklch(from var(--brand-seed) calc(l * 0.6) calc(c * 0.15) h);
+            --on-bg-base:   oklch(from var(--brand-seed) 0.95 0.02 h);
+            --bg-surface:   oklch(from var(--brand-seed) calc(l * 0.9) calc(c * 0.20) h);
+            --on-bg-surface:oklch(from var(--brand-seed) 0.90 0.02 h);
+
+            --brand:        var(--brand-seed);
+            --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 7, 0.98) 0.01 var(--brand-hue));
+            --brand-hover:  oklch(from var(--brand-seed) calc(l + 0.1) c h);
+            --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
+            --bg-muted:     oklch(from var(--brand-seed) calc(l * 1.5) 0.02 h);
+            --on-bg-muted:  oklch(from var(--brand-seed) 0.60 0.02 h);
+
+            --brand-100: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.90) calc(c * 0.4) h);
+            --brand-200: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.75) calc(c * 0.7) h);
+            --brand-300: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.50) c h);
+            --brand-400: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.25) c h);
+            --brand-500: var(--brand-seed);
+            --brand-600: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.25) c h);
+            --brand-700: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.50) c h);
+            --brand-800: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.75) c h);
+            --brand-900: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.90) c h);
+
+            --success: oklch(0.70 0.12 var(--hue-success));
+            --on-success: oklch(0.10 0.01 var(--hue-success));
+            --warning: oklch(0.85 0.15 var(--hue-warning));
+            --on-warning: oklch(0.10 0.02 var(--hue-warning));
+            --danger:  oklch(0.65 0.18 var(--hue-danger));
+            --on-danger: oklch(0.10 0.01 var(--hue-danger));
+            --info:    oklch(0.70 0.12 var(--hue-info));
+            --on-info: oklch(0.10 0.01 var(--hue-info));
+        }
+    }
+
+    /* --------------------------------------------------------
+       3. MANUAL OVERRIDES (Attribute Selector)
+       -------------------------------------------------------- */
+
+    /* Force Light even if OS is Dark */
     [data-theme="light"] {
         color-scheme: light;
         --brand-hue: var(--cx-hue-light);
         --brand-chroma: var(--cx-chroma-light);
-
-        --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
-
-        --bg-base:      oklch(from var(--brand-seed) 0.99 calc(c * 0.05) h);
+        --brand-lightness: var(--cx-lightness-light);
+        --brand-seed: oklch(var(--brand-lightness) var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+        --bg-base:      oklch(from var(--brand-seed) calc(l + (1 - l) * 0.95) calc(c * 0.05) h);
         --on-bg-base:   oklch(from var(--brand-seed) 0.15 calc(c * 0.10) h);
-        --bg-surface:   oklch(from var(--brand-seed) 0.95 calc(c * 0.10) h);
-        --on-bg-surface:oklch(from var(--brand-seed) 0.15 calc(c * 0.10) h);
-
+        --bg-surface:   oklch(from var(--brand-seed) calc(l + (1 - l) * 0.85) calc(c * 0.10) h);
+        --on-bg-surface:oklch(from var(--brand-seed) 0.20 calc(c * 0.10) h);
         --brand:        var(--brand-seed);
-        --on-brand:     oklch(from var(--brand-seed) 0.99 0.01 h);
-        --bg-glass:     oklch(from var(--brand-seed) 0.99 0.01 h / 0.25);
+        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+        --brand-hover:  oklch(from var(--brand-seed) calc(l - 0.08) c h);
+        --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
+        --bg-muted:     oklch(from var(--brand-seed) calc(l + (1 - l) * 0.7) 0.02 h);
+        --on-bg-muted:  oklch(from var(--brand-seed) 0.45 0.02 h);
+
+        --brand-100: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.80) calc(c * 0.3) h);
+        --brand-200: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.60) calc(c * 0.5) h);
+        --brand-300: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.40) calc(c * 0.7) h);
+        --brand-400: oklch(from var(--brand-seed) calc(l + (0.96 - l) * 0.20) calc(c * 0.9) h);
+        --brand-500: var(--brand-seed);
+        --brand-600: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.10) c h);
+        --brand-700: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.20) c h);
+        --brand-800: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.30) c h);
+        --brand-900: oklch(from var(--brand-seed) calc(l - (l - 0.12) * 0.40) c h);
+
+        --success: oklch(0.60 0.15 var(--hue-success));
+        --on-success: oklch(0.99 0.01 var(--hue-success));
+        --warning: oklch(0.80 0.12 var(--hue-warning));
+        --on-warning: oklch(0.20 0.02 var(--hue-warning));
+        --danger:  oklch(0.55 0.20 var(--hue-danger));
+        --on-danger: oklch(0.99 0.01 var(--hue-danger));
+        --info:    oklch(0.60 0.15 var(--hue-info));
+        --on-info: oklch(0.99 0.01 var(--hue-info));
     }
 
-    /* --------------------------------------------------------
-       DARK THEME (Dark Mode)
-       -------------------------------------------------------- */
-
-    /* We define a reusable set of properties to avoid duplication */
-    /* This block handles the actual token values for Dark Mode */
-%dark-theme-tokens {
-    color-scheme: dark;
-    --brand-hue: var(--cx-hue-dark);
-    --brand-chroma: var(--cx-chroma-dark);
-
-    --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
-
-    --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
-    --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-    --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
-    --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-
-    --brand:        oklch(from var(--brand-seed) 0.75 c h);
-    --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
-    --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
-}
-
-    /* --------------------------------------------------------
-       TRIGGERING THE DARK THEME
-       -------------------------------------------------------- */
-
-    /* Trigger 1: Explicitly set to [data-theme="dark"] */
+    /* Force Dark even if OS is Light */
     [data-theme="dark"] {
-        @apply %dark-theme-tokens; /* If using a preprocessor, otherwise copy-paste the block below */
         color-scheme: dark;
         --brand-hue: var(--cx-hue-dark);
         --brand-chroma: var(--cx-chroma-dark);
-        --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
-        --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
-        --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-        --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
-        --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-        --brand:        oklch(from var(--brand-seed) 0.75 c h);
-        --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
-        --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
-    }
+        --brand-lightness: var(--cx-lightness-dark);
+        --brand-seed: oklch(var(--brand-lightness) var(--brand-chroma) calc(var(--brand-hue) * 1deg));
+        --bg-base:      oklch(from var(--brand-seed) calc(l * 0.6) calc(c * 0.15) h);
+        --on-bg-base:   oklch(from var(--brand-seed) 0.95 0.02 h);
+        --bg-surface:   oklch(from var(--brand-seed) calc(l * 0.9) calc(c * 0.20) h);
+        --on-bg-surface:oklch(from var(--brand-seed) 0.90 0.02 h);
+        --brand:        var(--brand-seed);
+        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+        --brand-hover:  oklch(from var(--brand-seed) calc(l + 0.1) c h);
+        --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
+        --bg-muted:     oklch(from var(--brand-seed) calc(l * 1.5) 0.02 h);
+        --on-bg-muted:  oklch(from var(--brand-seed) 0.60 0.02 h);
 
-    /* System is Dark AND User hasn't forced Light */
-    @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-            color-scheme: dark;
-            --brand-hue: var(--cx-hue-dark);
-            --brand-chroma: var(--cx-chroma-dark);
-            --brand-seed: oklch(0.6 var(--brand-chroma) calc(var(--brand-hue) * 1deg));
-            --bg-base:      oklch(from var(--brand-seed) 0.12 calc(c * 0.10) h);
-            --on-bg-base:   oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-            --bg-surface:   oklch(from var(--brand-seed) 0.18 calc(c * 0.15) h);
-            --on-bg-surface:oklch(from var(--brand-seed) 0.95 calc(c * 0.05) h);
-            --brand:        oklch(from var(--brand-seed) 0.75 c h);
-            --on-brand:     oklch(from var(--brand-seed) 0.1 0.01 h);
-            --bg-glass:     oklch(from var(--brand-seed) 0.12 0.02 h / 0.25);
-        }
+        --brand-100: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.90) calc(c * 0.4) h);
+        --brand-200: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.75) calc(c * 0.7) h);
+        --brand-300: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.50) c h);
+        --brand-400: oklch(from var(--brand-seed) calc(l - (l - 0.10) * 0.25) c h);
+        --brand-500: var(--brand-seed);
+        --brand-600: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.25) c h);
+        --brand-700: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.50) c h);
+        --brand-800: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.75) c h);
+        --brand-900: oklch(from var(--brand-seed) calc(l + (0.90 - l) * 0.90) c h);
+
+        --success: oklch(0.70 0.12 var(--hue-success));
+        --on-success: oklch(0.10 0.01 var(--hue-success));
+        --warning: oklch(0.85 0.15 var(--hue-warning));
+        --on-warning: oklch(0.10 0.02 var(--hue-warning));
+        --danger:  oklch(0.65 0.18 var(--hue-danger));
+        --on-danger: oklch(0.10 0.01 var(--hue-danger));
+        --info:    oklch(0.70 0.12 var(--hue-info));
+        --on-info: oklch(0.10 0.01 var(--hue-info));
     }
 }

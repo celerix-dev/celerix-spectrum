@@ -6,27 +6,32 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./vue": {
-      "import": "./dist/vue/index.js",
-      "types": "./dist/vue/index.d.ts"
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js"
     },
-    "./styles": "./dist/styles/index.css"
+    "./css": "./dist/celerix-spectrum.css"
   },
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc && node ./scripts/build-css.js",
-    "dev": "tsc --watch"
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
     "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
     "vue": "~3.5.28"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   }
 }

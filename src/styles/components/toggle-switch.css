@@ -1,0 +1,47 @@
+/* Base styles for the generic switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.toggle-switch input {
+    opacity: 0; width: 0; height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background-color: var(--brand);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px;
+    transition: 0.3s;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 2px; bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Checked State */
+input:checked + .toggle-slider {
+    background-color: var(--brand, #3b82f6);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+}
+
+/* DISABLED STATE: The "Grey Out" */
+input:disabled + .toggle-slider {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(1); /* Removes brand color when disabled */
+}

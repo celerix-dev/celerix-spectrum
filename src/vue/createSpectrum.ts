@@ -1,7 +1,6 @@
 import { reactive } from 'vue';
 import {SpectrumConfig, SpectrumEngine, ThemeMode, ThemeState} from '../core/engine';
 
-
 export interface SpectrumPlugin {
     state: ThemeState;
     updateValue: (theme: 'light' | 'dark', key: 'hue' | 'chroma', value: number) => void;

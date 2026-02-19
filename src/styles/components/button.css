@@ -1,0 +1,75 @@
+.cx-button {
+
+    --cx-optical-offset: 0.5px;
+
+    text-box-trim: trim-start;
+
+    background: var(--brand);
+    color: var(--on-brand);
+    padding-inline: var(--s-3);
+    padding-top: calc(var(--s-0-5) - var(--cx-optical-offset));
+    padding-bottom: calc(var(--s-0-5) + var(--cx-optical-offset));
+    border-width: var(--s-0-5);
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--s-1);
+    cursor: pointer;
+    margin: var(--s-1);
+
+    &.is-success { --brand: var(--success); --on-brand: var(--on-success); --brand-hover: oklch(from var(--success) calc(l + 0.05) c h); }
+    &.is-warning { --brand: var(--warning); --on-brand: var(--on-warning); --brand-hover: oklch(from var(--warning) calc(l + 0.05) c h); }
+    &.is-danger  { --brand: var(--danger);  --on-brand: var(--on-danger);  --brand-hover: oklch(from var(--danger)  calc(l + 0.05) c h); }
+    &.is-info    { --brand: var(--info);    --on-brand: var(--on-info);    --brand-hover: oklch(from var(--info)    calc(l + 0.05) c h); }
+
+    &:disabled,
+    &.is-disabled {
+        background: var(--bg-muted);
+        color: var(--on-bg-muted);
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+        transform: none !important;
+
+        /* For outlined/3D variants when disabled */
+        border-color: var(--separator);
+
+        &.outlined {
+            background: transparent;
+        }
+    }
+
+    &.outlined:not(.is3d) {
+        background-color: light-dark(var(--brand-100), var(--brand-200));
+        border-color: var(--brand);
+        color: light-dark(var(--brand), var(--on-brand));
+
+        &:hover {
+            background-color: var(--brand-hover);
+            color: var(--on-brand);
+        }
+    }
+
+    &.is3d {
+
+        --highlight: light-dark(rgba(255,255,255,0.4), rgba(255,255,255,0.5));
+        --shadow: light-dark(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+
+        border-top-color: var(--highlight);
+        border-left-color: var(--highlight);
+        border-right-color: var(--shadow);
+        border-bottom-color: var(--shadow);
+
+        &:active {
+            border-top-color: var(--shadow);
+            border-left-color: var(--shadow);
+            border-right-color: var(--highlight);
+            border-bottom-color: var(--highlight);
+            transform: translate(calc(var(--s-0-5) / 2), calc(var(--s-0-5) / 2));
+        }
+    }
+
+    &:hover {
+        background: var(--brand-hover);
+    }
+
+}
