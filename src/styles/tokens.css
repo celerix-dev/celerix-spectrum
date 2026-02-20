@@ -43,7 +43,15 @@
         --on-bg-surface:oklch(from var(--brand-seed) 0.20 calc(c * 0.10) h);
 
         --brand:        var(--brand-seed);
-        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+
+        --threshold: 0.57;
+        --on-brand-lightness: clamp(
+                0.15,
+                (var(--threshold) - var(--brand-lightness)) * 1000000,
+                0.98
+        );
+        --on-brand: oklch(var(--on-brand-lightness) 0.01 var(--brand-hue));
+
         --brand-hover:  oklch(from var(--brand-seed) calc(l - 0.08) c h);
         --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
         --bg-muted:     oklch(from var(--brand-seed) calc(l + (1 - l) * 0.7) 0.02 h);
@@ -87,7 +95,9 @@
             --on-bg-surface:oklch(from var(--brand-seed) 0.90 0.02 h);
 
             --brand:        var(--brand-seed);
-            --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 7, 0.98) 0.01 var(--brand-hue));
+            --on-brand-lightness: 0.98;
+            --on-brand: oklch(var(--on-brand-lightness) 0.01 var(--brand-hue));
+
             --brand-hover:  oklch(from var(--brand-seed) calc(l + 0.1) c h);
             --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
             --bg-muted:     oklch(from var(--brand-seed) calc(l * 1.5) 0.02 h);
@@ -119,7 +129,7 @@
        -------------------------------------------------------- */
 
     /* Force Light even if OS is Dark */
-    [data-theme="light"] {
+    [data-cx-mode="light"] {
         color-scheme: light;
         --brand-hue: var(--cx-hue-light);
         --brand-chroma: var(--cx-chroma-light);
@@ -130,7 +140,15 @@
         --bg-surface:   oklch(from var(--brand-seed) calc(l + (1 - l) * 0.85) calc(c * 0.10) h);
         --on-bg-surface:oklch(from var(--brand-seed) 0.20 calc(c * 0.10) h);
         --brand:        var(--brand-seed);
-        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+
+        --threshold: 0.57;
+        --on-brand-lightness: clamp(
+                0.15,
+                (var(--threshold) - var(--brand-lightness)) * 1000000,
+                0.98
+        );
+        --on-brand: oklch(var(--on-brand-lightness) 0.01 var(--brand-hue));
+
         --brand-hover:  oklch(from var(--brand-seed) calc(l - 0.08) c h);
         --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
         --bg-muted:     oklch(from var(--brand-seed) calc(l + (1 - l) * 0.7) 0.02 h);
@@ -157,7 +175,7 @@
     }
 
     /* Force Dark even if OS is Light */
-    [data-theme="dark"] {
+    [data-cx-mode="dark"] {
         color-scheme: dark;
         --brand-hue: var(--cx-hue-dark);
         --brand-chroma: var(--cx-chroma-dark);
@@ -168,7 +186,10 @@
         --bg-surface:   oklch(from var(--brand-seed) calc(l * 0.9) calc(c * 0.20) h);
         --on-bg-surface:oklch(from var(--brand-seed) 0.90 0.02 h);
         --brand:        var(--brand-seed);
-        --on-brand:     oklch(clamp(0.1, (0.85 - var(--brand-lightness)) * 10, 0.98) 0.01 var(--brand-hue));
+
+        --on-brand-lightness: 0.98;
+        --on-brand: oklch(var(--on-brand-lightness) 0.01 var(--brand-hue));
+
         --brand-hover:  oklch(from var(--brand-seed) calc(l + 0.1) c h);
         --bg-glass:     oklch(from var(--brand-seed) l c h / 0.01);
         --bg-muted:     oklch(from var(--brand-seed) calc(l * 1.5) 0.02 h);

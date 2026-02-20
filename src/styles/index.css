@@ -70,14 +70,12 @@ a, a:visited, a:active {
 }
 
 .professional-card {
-    --border-width: 3px;
-    padding:10px;
+    padding: 10px;
     position: relative;
-    border: var(--border-width) solid transparent;
-    border-radius: 8px;
-    background:
-            linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box, /* Inner color */
-            linear-gradient(135deg, var(--brand-600) 0%, var(--brand-400) 100%) border-box; /* Border gradient */
+    border: 1px solid var(--separator);
+    border-radius: 7px;
+    background-color: var(--bg-surface);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 /** DO NOT REMOVE OR CHANGE THIS CLASS; This is used in engine.ts to calculate contrast ratios **/
