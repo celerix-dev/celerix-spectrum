@@ -1,4 +1,4 @@
-import {computed, ComputedRef, reactive, toRef} from 'vue';
+import {computed, reactive, toRef} from 'vue';
 import {
     AccessibilityReport,
     ColorValues,

@@ -9,6 +9,7 @@ export default defineConfig({
         dts({
             rollupTypes: true, // Merges all types into one .d.ts per entry
             insertTypesEntry: true,
+            include: ['src'],
         })
     ],
     build: {

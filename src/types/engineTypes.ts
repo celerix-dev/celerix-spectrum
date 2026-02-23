@@ -1,7 +1,6 @@
 export type ThemeMode = 'light' | 'dark' | 'auto';
 
-export type RGBArray = [r: number, g: number, b: number];
-export type ContrastTag = 'AAA' | 'AA' | 'AA_LG' | 'FAIL';
+export type ContrastRating = 'AAA' | 'AA' | 'AA_LG' | 'FAIL';
 
 export interface UpdatePayload {
     mode: 'light' | 'dark';
@@ -26,7 +25,7 @@ export interface ThemeState {
 
 export interface AccessibilityReport {
     ratio: number;
-    status: ContrastTag;
+    status: ContrastRating;
     isPass: boolean;
     colors: {
         bg: string;

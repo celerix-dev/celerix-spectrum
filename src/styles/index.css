@@ -31,6 +31,11 @@ body {
     color: var(--on-brand);
 }
 
+.base {
+    background-color: var(--bg-base);
+    color: var(--on-bg-base);
+}
+
 .success {
     background: var(--success);
     color: var(--on-success);
@@ -67,15 +72,6 @@ a, a:visited, a:active {
     &:hover {
         color: var(--brand-700);
     }
-}
-
-.professional-card {
-    padding: 10px;
-    position: relative;
-    border: 1px solid var(--separator);
-    border-radius: 7px;
-    background-color: var(--bg-surface);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 /** DO NOT REMOVE OR CHANGE THIS CLASS; This is used in engine.ts to calculate contrast ratios **/

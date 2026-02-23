@@ -1,6 +1,5 @@
 import type {
     AccessibilityReport,
-    RGBArray,
     SpectrumConfig,
     ThemeMode,
     ThemeState,

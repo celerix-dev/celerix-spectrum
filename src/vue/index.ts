@@ -5,6 +5,6 @@ export type {
     UpdatePayload,
     ThemeState,
     ThemeMode,
-    ContrastTag,
+    ContrastRating,
     AccessibilityReport
 } from "../types/engineTypes";
