@@ -5,7 +5,7 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 
     .card-header {
-
+        background-color: var(--bg-surface);
         padding:5px;
         border-bottom: 1px solid var(--separator);
     }

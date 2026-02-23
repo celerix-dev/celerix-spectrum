@@ -15,11 +15,15 @@
       "types": "./dist/vue.d.ts",
       "import": "./dist/vue.js"
     },
+    "./unoPreset": {
+      "types": "./dist/unoPreset.d.ts",
+      "import": "./dist/unoPreset.js"
+    },
     "./css": "./dist/celerix-spectrum.css"
   },
   "scripts": {
     "prepare": "npm run build",
-    "dev": "vite build --watch",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "check-types": "tsc --noEmit"
@@ -27,12 +31,19 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",
     "typescript": "~5.9.3",
+    "unocss": "^66.6.0",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4",
     "vue": "~3.5.28"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "unocss": "^66.6.0"
+  },
+  "PeerDependenciesMeta": {
+    "unocss": {
+      "optional": true
+    }
   },
   "overrides": {
     "typescript": "~5.9.3"

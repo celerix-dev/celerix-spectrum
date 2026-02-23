@@ -10,6 +10,7 @@ export default defineConfig({
             rollupTypes: true, // Merges all types into one .d.ts per entry
             insertTypesEntry: true,
             include: ['src'],
+            tsconfigPath: './tsconfig.json',
         })
     ],
     build: {
@@ -19,6 +20,7 @@ export default defineConfig({
                 index: resolve(__dirname, 'src/index.ts'),
                 // This will create dist/vue.js and dist/vue.d.ts
                 vue: resolve(__dirname, 'src/vue/index.ts'),
+                unoPreset: resolve(__dirname, 'src/plugins/uno-preset.ts'),
             },
             formats: ['es']
         },
