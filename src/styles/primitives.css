@@ -49,7 +49,7 @@
         padding-inline: var(--s-3);
         min-height: var(--header-height, 4rem);
     }
-    
+
     /* Responsive: On small screens, stack everything */
     @media (max-width: 768px) {
         :root {

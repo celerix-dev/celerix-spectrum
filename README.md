@@ -1,53 +1,86 @@
-# celerix-spectrum
-Framework-agnostic primitives for color and layout. Build your own UI on a solid foundation of OKLCH dynamics and systematic spacing
+# 🪐 Celerix Spectrum
 
-## Usage (vue example)
-To interact with the theming engine
-```typescript
+Framework-agnostic primitives for color and layout. Build your own UI on a solid foundation of OKLCH dynamics and systematic spacing powered by UnoCSS.
+
+---
+> [!IMPORTANT]
+> ### 🏗️ Initial Development (v0.x)
+> **Celerix Spectrum** is currently in active development. We are building out the core OKLCH engine and UnoCSS primitives. Expect frequent updates and breaking changes as we approach our first stable release. 🪐
+
+## 🚀 Usage (Vue 3)
+
+To initialize the theming engine and inject the spectrum state:
+
+~~~typescript
+import { createApp } from 'vue'
 import { createSpectrum } from "celerix-spectrum/vue";
 
-//After const app = createApp(..)
+const app = createApp(App)
+
 // prefix is optional, defaults to 'cx'
-app.use(createSpectrum({prefix: 'your-prefix'}))
-```
-then in a component or view, you can use it like this:
+app.use(createSpectrum({ prefix: 'cx' }))
+app.mount('#app')
+~~~
 
-```vue
+### Accessing State
+In any component, you can hook into the live spectrum values:
 
+~~~vue
 <script setup lang="ts">
   import { useSpectrum } from "celerix-spectrum/vue";
-  const spectrum = useSpectrum();
+  const { state } = useSpectrum();
 </script>
+
 <template>
-  <div>light hue = {{ spectrum.state.light.hue }}</div>
-  <div>light chroma = {{ spectrum.state.light.chroma }}</div>
+  <div :style="{ color: `oklch(${state.light.lightness} ${state.light.chroma} ${state.light.hue})` }">
+    Current Hue: {{ state.light.hue }}
+  </div>
 </template>
-```
+~~~
 
-## CSS primitives and utilities
+---
 
-| Class                 | CSS                                              |
-|-----------------------|--------------------------------------------------|
-| `.d-flex`             | `display: flex`                                  |
-| `.d-flex-col`         | `display: flex; flex-direction: column;`         |
-| `.d-flex-row`         | `display: flex; flex-direction: row;`            |
-| `.d-flex-wrap`        | `display: flex; flex-wrap: wrap;`                |                      
-| `.d-flex-nowrap`      | `display: flex; flex-wrap: nowrap;`              |              
-| `.d-flex-grow-1`      | `display: flex; flex-grow: 1;`                   |                   
-| `.d-flex-shrink-0`    | `display: flex; flex-shrink: 0;`                 |                 
-| `.d-flex-shrink-1`    | `display: flex; flex-shrink: 1;`                 |                 
-| `.d-flex-jc-start`    | `display: flex; justify-content: flex-start;`    |    
-| `.d-flex-jc-end`      | `display: flex; justify-content: flex-end;`      |  
-| `.d-flex-jc-center`   | `display: flex; justify-content: center;`        |        
-| `.d-flex-jc-between`  | `display: flex; justify-content: space-between;` | 
-| `.d-flex-ai-start`    | `display: flex; align-items: flex-start;`        |        
-| `.d-flex-ai-end`      | `display: flex; align-items: flex-end;`          |          
-| `.d-flex-ai-center`   | `display: flex; align-items: center;`            |            
-| `.d-flex-ai-baseline` | `display: flex; align-items: baseline;`          |          
-| `.d-flex-ai-stretch`  | `display: flex; align-items: stretch;`           |           
-| `.d-flex-ac-start`    | `display: flex; align-content: flex-start;`      |      
-| `.d-flex-ac-end`      | `display: flex; align-content: flex-end;`        |    
-| `.d-flex-ac-center`   | `display: flex; align-content: center;`          |          
-| `.d-flex-ac-between`  | `display: flex; align-content: space-between;`   |   
-| `.d-flex-ac-around`   | `display: flex; align-content: space-around;`    |    
-| `.d-flex-ac-stretch`  | `display: flex; align-content: stretch;`         |         
+## 🏗️ Dynamic Layout Primitives (UnoCSS)
+
+Celerix Spectrum moves away from static classes. Use dynamic rules to define your layout dimensions directly in your HTML.
+
+### 1. The Magic Dashboard
+Control your entire application shell with a single class. It automatically assigns `<header>`, `<aside>`, `<main>`, and `<footer>` to their respective grid areas.
+
+| Class Pattern | Description |
+| :--- | :--- |
+| `cx-layout-[sb]-[hd]` | Sidebar width + Header height (e.g., `cx-layout-350-60`) |
+| `cx-layout-[sb]-[hd]-[ft]` | Sidebar + Header + Footer (e.g., `cx-layout-350-60-40`) |
+
+### 2. Auto-Grids (Responsive Cards)
+The "Holy Grail" of responsive design. No media queries required.
+* **Pattern:** `cx-grid-[min-width]`
+* **Example:** `cx-grid-300` (Cards stay at least 300px wide, or stack to 100% on mobile).
+
+### 3. Systematic Spacing
+Uses the `--s-[n]` scale for Padding, Margin, and Gap. Supports `!important` suffix.
+* **Pattern:** `[type][direction]-[scale]`
+* **Example:** `p-4`, `mx-auto`, `gc-3` (column gap), `p-2-important`
+
+---
+
+## ⚡ Utility Atoms & Shortcuts
+
+Quick-hit classes for building fast, consistent layouts.
+
+| Category | Shortcuts / Atoms |
+| :--- | :--- |
+| **Display** | `d-flex`, `d-grid`, `d-block`, `d-none` |
+| **Flexbox** | `flex-center`, `flex-jc-between`, `flex-ai-center`, `flex-dir-col` |
+| **Position** | `pos-relative`, `pos-absolute`, `abs-center`, `fixed-cover` |
+| **Sizing** | `w-full`, `h-dvh`, `size-full`, `aspect-square` |
+| **Interaction** | `cursor-pointer`, `select-none`, `pointer-events-none` |
+| **Special** | `cx-glass` (Frosted glass effect), `text-truncate` |
+
+---
+
+## 🎨 Color Philosophy
+
+Celerix Spectrum is built on **Perceptual Uniformity**.
+
+By using **OKLCH**, we ensure that your brand colors maintain consistent contrast and vibrancy across the entire lightness scale. Unlike RGB or HEX, OKLCH allows for mathematically precise color shifts that look natural to the human eye.
