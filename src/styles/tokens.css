@@ -1,13 +1,13 @@
 @layer tokens {
     :root {
-        /* USER PREFERENCES - Synced by SpectrumEngine */
-        --cx-hue-light: 290;
-        --cx-chroma-light: 0.18;
-        --cx-lightness-light: 0.6;
+        /* USER PREFERENCES */
+        --cx-hue-light: 258;
+        --cx-chroma-light: 0.09;
+        --cx-lightness-light: 0.50;
 
-        --cx-hue-dark: 20;
-        --cx-chroma-dark: 0.15;
-        --cx-lightness-dark: 0.14;
+        --cx-hue-dark: 258;
+        --cx-chroma-dark: 0.09;
+        --cx-lightness-dark: 0.30;
 
         /* SHARED TOKENS */
         --s-0: 0rem; --s-0-5: 0.125rem; --s-1: 0.25rem; --s-2: 0.5rem; --s-2-5: 0.75rem;
