@@ -1,106 +1,5 @@
 @layer primitives {
 
-    .d-flex { display: flex; }
-    .d-inline-flex { display: inline-flex; }
-    .d-inline { display: inline; }
-    .d-inline-block { display: inline-block; }
-    .d-none { display: none; }
-    .d-block { display: block; }
-    .d-table { display: table; }
-    .d-table-cell { display: table-cell; }
-    .d-table-row { display: table-row; }
-    .d-grid { display: grid; }
-    .d-inline-grid { display: inline-grid; }
-    .d-contents { display: contents; }
-    .d-list-item { display: list-item; }
-    .d-run-in { display: run-in; }
-    .d-initial { display: initial; }
-    .d-inherit { display: inherit; }
-    .d-unset { display: unset; }
-
-    .d-flex-col { display: flex; flex-direction: column; }
-    .d-flex-row { display: flex; flex-direction: row; }
-    .d-flex-wrap { display: flex; flex-wrap: wrap; }
-    .d-flex-nowrap { display: flex; flex-wrap: nowrap; }
-    .d-flex-grow-1 { display: flex; flex-grow: 1; }
-    .d-flex-shrink-0 { display: flex; flex-shrink: 0; }
-    .d-flex-shrink-1 { display: flex; flex-shrink: 1; }
-    .d-flex-jc-start { display: flex; justify-content: flex-start; }
-    .d-flex-jc-end { display: flex; justify-content: flex-end; }
-    .d-flex-jc-center { display: flex; justify-content: center; }
-    .d-flex-jc-between { display: flex; justify-content: space-between; }
-    .d-flex-ai-start { display: flex; align-items: flex-start; }
-    .d-flex-ai-end { display: flex; align-items: flex-end; }
-    .d-flex-ai-center { display: flex; align-items: center; }
-    .d-flex-ai-baseline { display: flex; align-items: baseline; }
-    .d-flex-ai-stretch { display: flex; align-items: stretch; }
-    .d-flex-ac-start { display: flex; align-content: flex-start; }
-    .d-flex-ac-end { display: flex; align-content: flex-end; }
-    .d-flex-ac-center { display: flex; align-content: center; }
-    .d-flex-ac-between { display: flex; align-content: space-between; }
-    .d-flex-ac-around { display: flex; align-content: space-around; }
-    .d-flex-ac-stretch { display: flex; align-content: stretch; }
-
-    .flex-dir-column { flex-direction: column; }
-    .flex-dir-row { flex-direction: row; }
-    .flex-wrap { flex-wrap: wrap; }
-    .flex-nowrap { flex-wrap: nowrap; }
-    .flex-grow-1 { flex-grow: 1; }
-    .flex-shrink-0 { flex-shrink: 0; }
-    .flex-shrink-1 { flex-shrink: 1; }
-    .justify-start { justify-content: flex-start; }
-    .justify-end { justify-content: flex-end; }
-    .justify-center { justify-content: center; }
-    .justify-between { justify-content: space-between; }
-    .align-start { align-items: flex-start; }
-    .align-start-important { align-items: flex-start !important; }
-    .align-end { align-items: flex-end; }
-    .align-end-important { align-items: flex-end !important; }
-    .align-center { align-items: center; }
-    .align-center-important { align-items: center !important; }
-    .align-baseline { align-items: baseline; }
-    .align-baseline-important { align-items: baseline !important; }
-    .align-stretch { align-items: stretch; }
-    .align-stretch-important { align-items: stretch !important; }
-    .content-start { align-content: flex-start; }
-    .content-end { align-content: flex-end; }
-    .content-center { align-content: center; }
-    .content-between { align-content: space-between; }
-    .content-around { align-content: space-around; }
-    .content-stretch { align-content: stretch; }
-    .text-start { text-align: start; }
-    .text-end { text-align: end; }
-    .text-center { text-align: center; }
-    .text-justify { text-align: justify; }
-    .text-nowrap { white-space: nowrap; }
-    .text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-    .w-10 { width: 10%; } .w-20 { width: 20%; } .w-25 { width: 25%; } .w-30 { width: 30%; } .w-33 { width: 33.3333%; }
-    .w-40 { width: 40%; } .w-50 { width: 50%; } .w-60 { width: 60%; } .w-66 { width: 66.6666%; } .w-70 { width: 70%; }
-    .w-75 { width: 75%; } .w-80 { width: 80%; } .w-90 { width: 90%; } .w-100 { width: 100%; }
-
-    .h-10 { height: 10%; } .h-20 { height: 20%; } .h-25 { height: 25%; } .h-30 { height: 30%; } .h-33 { height: 33.3333%; }
-    .h-40 { height: 40%; } .h-50 { height: 50%; } .h-60 { height: 60%; } .h-66 { height: 66.6666%; } .h-70 { height: 70%; }
-    .h-75 { height: 75%; } .h-80 { height: 80%; } .h-90 { height: 90%; } .h-100 { height: 100%; }
-
-    .min-w-100 { min-width: 100%; }
-    .min-h-100 { min-height: 100%; }
-    .max-w-100 { max-width: 100%; }
-    .max-h-100 { max-height: 100%; }
-
-    .overflow-hidden { overflow: hidden; }
-    .overflow-auto { overflow: auto; }
-    .overflow-visible { overflow: visible; }
-    .overflow-scroll { overflow: scroll; }
-    .overflow-x-hidden { overflow-x: hidden; }
-    .overflow-y-hidden { overflow-y: hidden; }
-    .overflow-x-auto { overflow-x: auto; }
-    .overflow-y-auto { overflow-y: auto; }
-    .overflow-x-scroll { overflow-x: scroll; }
-    .overflow-y-scroll { overflow-y: scroll; }
-
-    .pointer-events-none { pointer-events: none; }
-
     /* Stack: Vertical rhythm */
     .stack {
         display: flex;
@@ -114,17 +13,6 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: var(--justify, flex-start);
-    }
-
-    /* Grid: The "Auto-Layout" (Cards, Gallery) */
-    .grid {
-        display: grid;
-        gap: var(--s-3);
-        /* The magic: it stays 1 col until there is room for the --min width */
-        grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--min, 250px), 100%), 1fr)
-    );
     }
 
     /* Switcher: Threshold-based layout */
@@ -161,28 +49,7 @@
         padding-inline: var(--s-3);
         min-height: var(--header-height, 4rem);
     }
-
-    /* Admin dashboard layout */
-    .dashboard-layout {
-        display: grid;
-        height: 100dvh;
-        /* Define the columns: sidebar width (default 250px) and the rest is auto */
-        grid-template-columns: var(--sidebar-width, 250px) 1fr;
-        /* Define the rows: Header auto-height, Main expands */
-        grid-template-rows: auto 1fr;
-        transition: grid-template-columns 0.3s var(--ease);
-
-        /* The Map: */
-        grid-template-areas:
-      "sidebar header"
-      "sidebar main"
-    }
-
-    /* Assigning the children to the map */
-    .dashboard-layout > header  { grid-area: header; }
-    .dashboard-layout > aside   { grid-area: sidebar; }
-    .dashboard-layout > main    { grid-area: main; }
-
+    
     /* Responsive: On small screens, stack everything */
     @media (max-width: 768px) {
         :root {
