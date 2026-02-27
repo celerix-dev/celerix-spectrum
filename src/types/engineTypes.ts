@@ -17,6 +17,7 @@ export interface ColorValues {
 
 export interface ThemeState {
     mode: ThemeMode;
+    resolvedMode: 'light' | 'dark';
     isLinked: boolean;
     light: ColorValues;
     dark: ColorValues;

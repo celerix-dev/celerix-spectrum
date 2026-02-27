@@ -11,6 +11,7 @@ import {SpectrumEngine} from '../core/engine';
 
 export interface SpectrumPlugin {
     readonly mode: ThemeMode;
+    readonly resolvedMode: 'light' | 'dark';
     readonly active: ColorValues;
     readonly wcag: AccessibilityReport;
     readonly isLinked: boolean;
@@ -38,9 +39,10 @@ export function createSpectrum(options: SpectrumConfig = {}) {
     let saveTimeout: number | null = null;
 
     const active = computed(() => {
-        const mode =spectrumState.mode;
-        // Handle 'auto' by checking system preference if you want to be fancy
-        return mode === 'dark' ? spectrumState.dark : spectrumState.light;
+        // This now correctly identifies 'dark' even if mode is 'auto'
+        return spectrumState.resolvedMode === 'dark'
+            ? spectrumState.dark
+            : spectrumState.light;
     });
 
     engine.addEventListener('change', (e: any) => {
@@ -48,6 +50,7 @@ export function createSpectrum(options: SpectrumConfig = {}) {
 
         spectrumState.mode = data.mode;
         spectrumState.isLinked = data.isLinked;
+        spectrumState.resolvedMode = data.resolvedMode;
 
         spectrumState.light = { ...data.light };
         spectrumState.dark = { ...data.dark };
@@ -69,6 +72,7 @@ export function createSpectrum(options: SpectrumConfig = {}) {
             // This makes 'spectrum' available in every component via inject('spectrum')
             const pluginApi = reactive({
                 mode: toRef(spectrumState, 'mode'),
+                get resolvedMode() { return spectrumState.resolvedMode },
                 active: active,
                 wcag: computed(() => spectrumState.wcag),
                 isLinked: toRef(spectrumState, 'isLinked'),

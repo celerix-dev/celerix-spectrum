@@ -12,28 +12,38 @@ export class SpectrumEngine extends EventTarget {
     private readonly prefix: string;
     private styleTag: HTMLStyleElement | null = null;
     private isDirty: boolean = false;
+    private systemMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(config: SpectrumConfig = {}) {
         super();
         this.prefix = config.prefix || 'cx';
+        this.systemMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const initialMode = config.defaults?.mode || 'auto';
+        const initialResolved = initialMode === 'auto'
+            ? (this.systemMediaQuery.matches ? 'dark' : 'light')
+            : (initialMode as 'light' | 'dark');
 
         this.state = {
-            mode: config.defaults?.mode || 'auto',
+            mode: initialMode,
+            resolvedMode: initialResolved,
             isLinked: config.defaults?.isLinked || true,
             light: {
                 mode: 'light',
-                hue: config.defaults?.light?.hue ?? 290,
-                chroma: config.defaults?.light?.chroma ?? 0.18,
-                lightness: config.defaults?.light?.lightness ?? 0.60
+                hue: config.defaults?.light?.hue ?? 258,
+                chroma: config.defaults?.light?.chroma ?? 0.09,
+                lightness: config.defaults?.light?.lightness ?? 0.50
             },
             dark: {
                 mode: 'dark',
-                hue: config.defaults?.dark?.hue ?? 290,
-                chroma: config.defaults?.dark?.chroma ?? 0.18,
-                lightness: config.defaults?.dark?.lightness ?? 0.14
+                hue: config.defaults?.dark?.hue ?? 258,
+                chroma: config.defaults?.dark?.chroma ?? 0.09,
+                lightness: config.defaults?.dark?.lightness ?? 0.30
             },
             wcag: { ratio: 0, status: 'FAIL', isPass: false, colors: { bg: '', fg: '' } }
         };
+
+        this.systemMediaQuery.addEventListener('change', () => this.refreshResolvedMode());
 
         this.setupStyleTag();
 
@@ -117,7 +127,28 @@ export class SpectrumEngine extends EventTarget {
     public setThemeMode(newMode: ThemeMode): void {
         this.state.mode = newMode;
         document.documentElement.setAttribute('data-cx-mode', newMode);
+
+        // 2. Calculate the reality
+        const isDark = this.systemMediaQuery.matches;
+        this.state.resolvedMode = newMode === 'auto'
+            ? (isDark ? 'dark' : 'light')
+            : (newMode as 'light' | 'dark');
+
+        // 3. Emit ONCE. This tells Vue both the mode AND the resolved state.
         this.emitChange();
+    }
+
+    private refreshResolvedMode() {
+        const isDark = this.systemMediaQuery.matches;
+        const newResolved = this.state.mode === 'auto'
+            ? (isDark ? 'dark' : 'light')
+            : this.state.mode as 'light' | 'dark';
+
+        if (this.state.resolvedMode !== newResolved) {
+            this.state.resolvedMode = newResolved;
+            this.emitChange();
+        }
+
     }
 
     public toggleLink(): boolean {
