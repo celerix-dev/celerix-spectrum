@@ -54,6 +54,11 @@ const spectrum = useSpectrum();
 </template>
 ~~~
 
+<div align="center">
+  <img src="./docs/assets/Playground.png" alt="Celerix Spectrum Playground" width="800">
+  <p><i>The Celerix Playground: Real-time LCH mixing and WCAG validation.</i></p>
+</div>
+
 ---
 
 ## 🏗️ Dynamic Layout Primitives (UnoCSS)
