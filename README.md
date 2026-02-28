@@ -45,7 +45,7 @@ Celerix Spectrum includes a high-level Playground component. Drop it into your d
 
 ~~~vue
 <script setup lang="ts">
-import { useSpectrum, Playground } from "@celerix/spectrum/vue";
+import { useSpectrum, Playground } from "celerix-spectrum/vue";
 const spectrum = useSpectrum();
 </script>
 
