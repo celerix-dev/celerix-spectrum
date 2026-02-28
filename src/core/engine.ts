@@ -32,7 +32,7 @@ export class SpectrumEngine extends EventTarget {
                 mode: 'light',
                 hue: config.defaults?.light?.hue ?? 258,
                 chroma: config.defaults?.light?.chroma ?? 0.09,
-                lightness: config.defaults?.light?.lightness ?? 0.50
+                lightness: config.defaults?.light?.lightness ?? 0.42
             },
             dark: {
                 mode: 'dark',

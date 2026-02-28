@@ -1,5 +1,6 @@
 import './styles/index.css';
 export * from './core/engine';
+export * from './vue';
 
 export {
     hexToLCH,

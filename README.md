@@ -40,6 +40,22 @@ In any component, you can hook into the live spectrum values:
 
 ---
 
+## 🛠️ The Playground (Development Tool)
+Celerix Spectrum includes a high-level Playground component. Drop it into your developer console or settings page to visualize your OKLCH math, test WCAG compliance, and generate presets in real-time.
+
+~~~vue
+<script setup lang="ts">
+import { useSpectrum, Playground } from "@celerix/spectrum/vue";
+const spectrum = useSpectrum();
+</script>
+
+<template>
+    <Playground :spectrum="spectrum" />
+</template>
+~~~
+
+---
+
 ## 🏗️ Dynamic Layout Primitives (UnoCSS)
 
 Celerix Spectrum moves away from static classes. Use dynamic rules to define your layout dimensions directly in your HTML.

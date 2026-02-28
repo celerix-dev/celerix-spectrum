@@ -39,7 +39,7 @@ export function createSpectrum(options: SpectrumConfig = {}) {
     let saveTimeout: number | null = null;
 
     const active = computed(() => {
-        // This now correctly identifies 'dark' even if mode is 'auto'
+        // This now correctly identifies 'dark' even if the mode is 'auto'
         return spectrumState.resolvedMode === 'dark'
             ? spectrumState.dark
             : spectrumState.light;

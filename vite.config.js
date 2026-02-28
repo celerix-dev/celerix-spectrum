@@ -32,7 +32,10 @@ export default defineConfig({
                 manualChunks: undefined,
                 entryFileNames: '[name].js',
                 chunkFileNames: '[name].js',
-                assetFileNames: 'celerix-spectrum.[ext]'
+                assetFileNames: 'celerix-spectrum.[ext]',
+                globals: {
+                    vue: 'Vue',
+                }
             }
         }
     }
