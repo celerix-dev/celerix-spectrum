@@ -23,6 +23,7 @@ jobs:
       - name: Install & Build
         run: |
           npm install -g npm@11.5.1
+          npm install
           npm run build
 
       - name: Publish
