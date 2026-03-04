@@ -28,3 +28,5 @@ jobs:
       - name: Publish
         # --provenance is required for Trusted Publishing to work
         run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
