@@ -1,20 +1,9 @@
 # 🪐 Celerix Spectrum
 
 ![npm version](https://img.shields.io/npm/v/@celerix/spectrum?color=0078d4&style=flat-square)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/@celerix/spectrum?color=44cc11&style=flat-square)
-![dependencies](https://img.shields.io/badge/dependencies-0-success?style=flat-square)
-![license](https://img.shields.io/npm/l/@celerix/spectrum?style=flat-square&color=black)
+![size](https://img.shields.io/badge/gzipped_size-under_5KB-success?style=flat-square)![dependencies](https://img.shields.io/badge/dependencies-0-success?style=flat-square)
+![license](https://img.shields.io/badge/license-MIT-black?style=flat-square)
 ![provenance](https://img.shields.io/badge/provenance-verified-blueviolet?style=flat-square)
-
-<p align="center">
-  <svg width="800" height="12" viewBox="0 0 800 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="spectrum-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#2a0000" />   <stop offset="20%" stop-color="#d93d3d" />  <stop offset="40%" stop-color="#f2c94c" />  <stop offset="60%" stop-color="#27ae60" />  <stop offset="80%" stop-color="#2d9cdb" />  <stop offset="100%" stop-color="#f2f2f2" /> </linearGradient>
-    </defs>
-    <rect width="800" height="6" rx="4" fill="url(#spectrum-gradient)" />
-  </svg>
-</p>
 
 Framework-agnostic primitives for color and layout. Build your own UI on a solid foundation of OKLCH dynamics and systematic spacing powered by UnoCSS.
 
