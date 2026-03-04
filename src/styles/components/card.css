@@ -3,10 +3,13 @@
     border-radius: 7px;
     background-color: var(--bg-surface);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    overflow: hidden;
 
     .card-header {
+        display: flex;
+        align-items: center;
         background-color: var(--bg-surface);
-        padding:5px;
+        padding: 5px 10px;
         border-bottom: 1px solid var(--separator);
     }
 

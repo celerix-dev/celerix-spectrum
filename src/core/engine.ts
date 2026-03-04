@@ -78,12 +78,14 @@ export class SpectrumEngine extends EventTarget {
     }
 
     checkContrast(): AccessibilityReport {
+
+        const currentTheme = this.state[this.state.resolvedMode];
+
         // Get the current background LCH from state
-        // (Assuming we are checking the Dark mode for now, or you can pass the mode)
         const bgLCH = {
-            l: this.state.light.lightness,
-            c: this.state.light.chroma,
-            h: this.state.light.hue
+            l: currentTheme.lightness,
+            c: currentTheme.chroma,
+            h: currentTheme.hue
         };
 
         // Get the "On-Brand" foreground LCH from our logic

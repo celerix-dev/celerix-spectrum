@@ -1,4 +1,4 @@
-import {computed, reactive, toRef} from 'vue';
+import {computed, reactive, toRef, toRefs} from 'vue';
 import {
     AccessibilityReport,
     ColorValues,
@@ -70,19 +70,24 @@ export function createSpectrum(options: SpectrumConfig = {}) {
 
         install(app: any) {
             // This makes 'spectrum' available in every component via inject('spectrum')
-            const pluginApi = reactive({
-                mode: toRef(spectrumState, 'mode'),
-                get resolvedMode() { return spectrumState.resolvedMode },
+            const refs = toRefs(spectrumState);
+
+            const pluginApi: SpectrumPlugin = reactive({
+
+                mode: refs.mode,
+                isLinked: refs.isLinked,
+                resolvedMode: refs.resolvedMode,
+
                 active: active,
                 wcag: computed(() => spectrumState.wcag),
-                isLinked: toRef(spectrumState, 'isLinked'),
+
                 updateValue: engine.updateValue.bind(engine),
                 toggleLink: engine.toggleLink.bind(engine),
                 setThemeMode: engine.setThemeMode.bind(engine)
-            });
+            }) as unknown as SpectrumPlugin;
 
-            app.provide(SpectrumKey, (pluginApi as unknown) as SpectrumPlugin);
-            // Also, attach it to globalProperties so we can use it as $spectrum in templates
+            app.provide(SpectrumKey, pluginApi);
+
             app.config.globalProperties.$spectrum = spectrumState;
         }
     };

@@ -44,12 +44,21 @@ export function celerixPreset(): Preset {
             ['text-right', { 'text-align': 'right' }],
             ['text-justify', { 'text-align': 'justify' }],
 
+            ['text-success', { 'color': 'var(--success)' }],
+            ['text-warning', { 'color': 'var(--warning)' }],
+            ['text-danger', { 'color': 'var(--danger)' }],
+            ['text-info', { 'color': 'var(--info)' }],
+            ['text-brand', { 'color': 'var(--brand)' }],
+
             ['ws-nowrap', { 'white-space': 'nowrap' }],
             ['ws-pre', { 'white-space': 'pre' }],
 
             ['v-hidden', { visibility: 'hidden' }],
             ['v-visible', { visibility: 'visible' }],
+
             ['opacity-0', { opacity: '0' }],
+            ['opacity-25', { opacity: '0.25' }],
+            ['opacity-50', { opacity: '0.50' }],
             ['opacity-100', { opacity: '1' }],
 
             ['min-w-0', { 'min-width': '0px' }],
@@ -104,6 +113,8 @@ export function celerixPreset(): Preset {
 
             ['aspect-square', { 'aspect-ratio': '1 / 1' }],
             ['aspect-video', { 'aspect-ratio': '16 / 9' }],
+
+            ['shadow-none', { 'box-shadow': '0, 0, 0 0 rgb(0 0 0 / 0)' }],
 
             [/^cx-w-(\d+)$/, ([, d]) => ({ width: `${d}%` })],
             [/^cx-h-(\d+)$/, ([, d]) => ({ height: `${d}%` })],
@@ -174,6 +185,42 @@ export function celerixPreset(): Preset {
             // --- Special Case: Auto Margins ---
             ['mx-auto', { 'margin-inline': 'auto' }],
             ['my-auto', { 'margin-block': 'auto' }],
+
+            [
+                /^border-([trblxy]-)?(\d+-)?(?:([a-zA-Z]+)-)?\[?(.+?)\]?$/,
+                ([, dir, width, style, color]) => {
+                    // 1. Normalize the direction
+                    const d = dir?.replace('-', '') || '';
+
+                    // 2. Clean Width (default to 1px)
+                    const w = width ? `${width.replace('-', '')}` : '1';
+
+                    // 3. Clean Style (default to solid)
+                    const s = style || 'solid';
+
+                    // 4. Clean Color (Stripping [ ] and any remaining trailing bracket)
+                    const c = color.replace(/[\[\]]/g, '');
+
+                    const directions: Record<string, string[]> = {
+                        t: ['-top'],
+                        r: ['-right'],
+                        b: ['-bottom'],
+                        l: ['-left'],
+                        x: ['-left', '-right'],
+                        y: ['-top', '-bottom'],
+                        '': [''],
+                    };
+
+                    const suffixList = directions[d] || [''];
+                    const styles: Record<string, string> = {};
+
+                    suffixList.forEach(suffix => {
+                        styles[`border${suffix}`] = `${w}px ${s} ${c}`;
+                    });
+
+                    return styles;
+                }
+            ],
 
             [/^cx-layout-(\d+)-(\d+)-(\d+)$/, ([, sb, hd, ft], { rawSelector }) => {
                 // Escape the selector to ensure UnoCSS classes with special characters work

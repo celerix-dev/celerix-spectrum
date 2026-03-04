@@ -21,6 +21,7 @@ export default defineConfig({
                 // This will create dist/vue.js and dist/vue.d.ts
                 vue: resolve(__dirname, 'src/vue/index.ts'),
                 unoPreset: resolve(__dirname, 'src/plugins/uno-preset.ts'),
+                ui: resolve(__dirname, 'src/ui/index.ts'),
             },
             formats: ['es']
         },
