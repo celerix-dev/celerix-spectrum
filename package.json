@@ -6,6 +6,7 @@
     "files": [
         "dist"
     ],
+    "license": "MIT",
     "author": {
         "name": "Marc W. Donkers",
         "email": "marc@mixxy.nl",
