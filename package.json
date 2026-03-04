@@ -1,6 +1,6 @@
 {
     "name": "@celerix/spectrum",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Framework-agnostic primitives for color and layout.",
     "type": "module",
     "files": [
