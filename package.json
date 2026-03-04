@@ -11,7 +11,10 @@
         "email": "marc@mixxy.nl",
         "url": "https://celerix.dev"
     },
-    "repository": "https://github.com/celerix/spectrum",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/celerix-dev/celerix-spectrum.git"
+    },
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
