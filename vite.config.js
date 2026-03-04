@@ -27,7 +27,7 @@ export default defineConfig({
         },
         rollupOptions: {
             // ONLY externalize framework peers
-            external: ['vue', 'react'],
+            external: ['vue', 'react', 'unocss', '@unocss/core'],
             output: {
                 // Prevents the "shared-chunk-hash.js" files
                 manualChunks: undefined,

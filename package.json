@@ -1,8 +1,11 @@
 {
-    "name": "celerix-spectrum",
-    "version": "0.0.1",
+    "name": "@celerix/spectrum",
+    "version": "0.1.0",
     "description": "Framework-agnostic primitives for color and layout.",
     "type": "module",
+    "files": [
+        "dist"
+    ],
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -26,9 +29,9 @@
         "./css": "./dist/celerix-spectrum.css"
     },
     "scripts": {
-        "prepare": "npm run build",
         "dev": "vite",
         "build": "vite build",
+        "prepublishOnly": "npm run build",
         "preview": "vite preview",
         "check-types": "tsc --noEmit"
     },
@@ -41,15 +44,12 @@
         "vue": "~3.5.28"
     },
     "peerDependencies": {
-        "vue": "^3.0.0",
-        "unocss": "^66.6.0"
+        "vue": "^3.2.0",
+        "unocss": "^0.60.0"
     },
-    "PeerDependenciesMeta": {
+    "peerDependenciesMeta": {
         "unocss": {
             "optional": true
         }
-    },
-    "overrides": {
-        "typescript": "~5.9.3"
     }
 }
