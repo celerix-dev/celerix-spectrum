@@ -4,7 +4,7 @@ Framework-agnostic primitives for color and layout. Build your own UI on a solid
 
 ---
 > [!IMPORTANT]
-> ### 🏗️ Initial Development (v0.x)
+> ### 🏗️ Initial Development
 > **Celerix Spectrum** is currently in active development. We are building out the core OKLCH engine and UnoCSS primitives. Expect frequent updates and breaking changes as we approach our first stable release. 🪐
 
 ## 🚀 Usage (Vue 3)
@@ -13,7 +13,7 @@ To initialize the theming engine and inject the spectrum state:
 
 ~~~typescript
 import { createApp } from 'vue'
-import { createSpectrum } from "celerix-spectrum/vue";
+import { createSpectrum } from "@celerix/spectrum/vue";
 
 const app = createApp(App)
 
@@ -27,7 +27,7 @@ In any component, you can hook into the live spectrum values:
 
 ~~~vue
 <script setup lang="ts">
-  import { useSpectrum } from "celerix-spectrum/vue";
+  import { useSpectrum } from "@celerix/spectrum/vue";
   const { state } = useSpectrum();
 </script>
 
@@ -45,7 +45,7 @@ Celerix Spectrum includes a high-level Playground component. Drop it into your d
 
 ~~~vue
 <script setup lang="ts">
-import { useSpectrum, Playground } from "celerix-spectrum/vue";
+import { useSpectrum, Playground } from "@celerix/spectrum/vue";
 const spectrum = useSpectrum();
 </script>
 
